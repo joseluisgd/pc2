@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PokemonG</string>
+    <string name="title_activity_registro">RegistroActivity</string>
+    <string name="atras"><![CDATA[<<]]></string>
+</resources>
