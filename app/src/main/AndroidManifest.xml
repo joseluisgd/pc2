@@ -19,5 +19,5 @@
         <activity android:name=".DashboardActivity" />
         <activity android:name=".MisPokemonesActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
