@@ -3,6 +3,7 @@ package com.example.jose.pokemong;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,13 @@ public class MisPokemonesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_pokemones);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(),"font/Pokemon Hollow.ttf");
+        TextView tv = (TextView) findViewById(R.id.mispoke);
+        TextView tv1 = (TextView) findViewById(R.id.tviPokemon);
+        tv.setTypeface(tf);
+        tv1.setTypeface(tf);
+
         tviNivel = (TextView) findViewById(R.id.tviNivel);
         tviTipo = (TextView) findViewById(R.id.tviTipo);
         tviDescripcion = (TextView) findViewById(R.id.tviDescripcion);
@@ -48,6 +56,7 @@ public class MisPokemonesActivity extends AppCompatActivity {
         if (extras != null) {
             id = extras.getInt("id");
         }
+
 
         butSiguiente= (Button) findViewById(R.id.butSiguiente);
         butAtras = (Button) findViewById(R.id.butAtras);

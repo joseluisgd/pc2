@@ -28,13 +28,17 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="Mis Pokemones"/>
+            android:text="@string/mis_pokemones"
+            android:textSize="30sp"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
         <Button
             android:id="@+id/butPokemonesDisponibles"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="Pokemones disponibles"/>
+            android:text="@string/pokemones_disponibles"
+            android:textSize="30sp"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
     </LinearLayout>
     <LinearLayout
         android:layout_weight="1"

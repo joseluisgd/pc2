@@ -1,6 +1,7 @@
 package com.example.jose.pokemong;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +16,9 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         Button butMisPokemones= (Button) findViewById(R.id.butMisPokemones);
         Button butPokemonesDisponibles = (Button) findViewById(R.id.butPokemonesDisponibles);
-
+        Typeface tf = Typeface.createFromAsset(getAssets(),"font/Pokemon Solid.ttf");
+        butMisPokemones.setTypeface(tf);
+        butPokemonesDisponibles.setTypeface(tf);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = extras.getInt("id");

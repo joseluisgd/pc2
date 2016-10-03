@@ -2,4 +2,18 @@
     <string name="app_name">PokemonG</string>
     <string name="title_activity_registro">RegistroActivity</string>
     <string name="atras"><![CDATA[<<]]></string>
+    <string name="mis_pokemones">Mis Pokemones</string>
+    <string name="pokemones_disponibles">Pokemones disponibles</string>
+    <string name="pokemon">Pokemon</string>
+    <string name="trading_cards">Trading cards</string>
+    <string name="ingrese_usuario">Ingrese usuario</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="registro">Registro</string>
+    <string name="mis_pokemone">MIS POKEMONES</string>
+    <string name="nivel">Nivel:</string>
+    <string name="tipo">Tipo:</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="menu">Menu</string>
+    <string name="der"><![CDATA[>>]]></string>
 </resources>
