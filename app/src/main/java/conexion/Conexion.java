@@ -10,9 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class Conexion {
 
-    //public static final String BASE_URL = "https://ul-pokemon.herokuapp.com/";
+    public static final String BASE_URL = "https://ul-pokemon.herokuapp.com/";
 
-    public static final String BASE_URL = "http://192.168.2.50:3500/";
+    //public static final String BASE_URL = "http://192.168.2.50:3500/";
     public Retrofit getConexion(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

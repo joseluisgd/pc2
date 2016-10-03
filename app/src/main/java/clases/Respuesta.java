@@ -33,6 +33,7 @@ public class Respuesta {
         this.status = status;
     }
 
+
     public Respuesta(Status status) {
         this.status = status;
     }

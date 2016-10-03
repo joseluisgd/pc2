@@ -64,15 +64,16 @@ public class MainActivity extends AppCompatActivity {
                         public void onResponse(Call<Respuesta> call, Response<Respuesta> response) {
                             Respuesta r=response.body();
                             int status = response.code();
-                            id = r.getUsuario().getId();
-                            if(r.getMsg().equalsIgnoreCase("")){
 
+                            if(r.getMsg().equalsIgnoreCase("")){
+                                id = r.getUsuario().getId();
                                 Intent intent= new Intent(MainActivity.this,DashboardActivity.class);
                                 intent.putExtra("id",id);
                                 Log.i("MainActivity","id"+id);
                                 startActivity(intent);
 
                             }else{
+                                Toast.makeText(MainActivity.this, r.getMsg().toString(), Toast.LENGTH_SHORT).show();
 
                             }
                             Log.d("MainActivity","STATUS: " + status);

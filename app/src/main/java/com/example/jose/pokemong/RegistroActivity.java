@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import clases.Respuesta;
 import clases.Usu;
+import clases.Usuario;
+import clases.Usuarios;
 import conexion.Conexion;
 import interfaces.UsuariosService;
 import retrofit2.Call;
@@ -54,12 +56,13 @@ public class RegistroActivity extends AppCompatActivity {
                             Retrofit retrofit= conexion.getConexion();
 
                             UsuariosService usuariosService = retrofit.create(UsuariosService.class);
-
-                            Usu usu= new Usu();
+                            Usuarios usuarios = new Usuarios();
+                            Usuario usu= new Usuario();
                             usu.setUsername(eteRegUsuario.getText().toString());
                             usu.setPassword(eteRegPassword.getText().toString());
+                            usuarios.setUsuario(usu);
 
-                            Call<Respuesta> usuarioCall = usuariosService.registrar(usu);
+                            Call<Respuesta> usuarioCall = usuariosService.registrar(usuarios);
 
                             usuarioCall.enqueue(new Callback<Respuesta>() {
                                 @Override
@@ -67,10 +70,16 @@ public class RegistroActivity extends AppCompatActivity {
                                     Respuesta respuesta = response.body();
                                     int status = response.code();
                                     Log.d("MainActivity","Status: " + status);
+                                    if(respuesta.getStatus().getMsg().equalsIgnoreCase("")){
+                                        Toast.makeText(RegistroActivity.this, "Datos guardados corrrectamente.", Toast.LENGTH_SHORT).show();
+                                        Intent intent= new Intent(RegistroActivity.this,MainActivity.class);
+                                        startActivity(intent);
+                                    }else{
+                                        Toast.makeText(RegistroActivity.this, "Error en el registro", Toast.LENGTH_SHORT).show();
 
-                                    Toast.makeText(RegistroActivity.this, "Datos guardados corrrectamente.", Toast.LENGTH_SHORT).show();
-                                    Intent intent= new Intent(RegistroActivity.this,MainActivity.class);
-                                    startActivity(intent);
+                                    }
+
+
                                 }
 
                                 @Override

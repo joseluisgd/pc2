@@ -7,6 +7,7 @@ import clases.Pokemones;
 import clases.Respuesta;
 import clases.Usu;
 import clases.Usuario;
+import clases.Usuarios;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -22,9 +23,9 @@ public interface UsuariosService {
 
 
     @POST("/usuarios")
-    Call<Respuesta> registrar(@Body Usu usuario);
+    Call<Respuesta> registrar(@Body Usuarios usuario);
 
 
     @GET("/usuarios/{id_usuario}/pokemones")
-    Call<List<Pokemones>> getPokemones(@Query("{id_usuario}")int id);
+    Call<List<Pokemones>> getPokemones(@Query("id_usuario")int id);
 }

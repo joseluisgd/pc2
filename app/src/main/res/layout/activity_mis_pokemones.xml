@@ -90,6 +90,15 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/tviDescripcion"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripcion"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_weight="1"

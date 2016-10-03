@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -28,6 +30,7 @@ import retrofit2.Retrofit;
 public class MisPokemonesActivity extends AppCompatActivity {
     TextView tviNivel;
     TextView tviTipo;
+    TextView tviDescripcion;
     ImageView img;
     Button butSiguiente;
     Button butAtras;
@@ -39,6 +42,7 @@ public class MisPokemonesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mis_pokemones);
         tviNivel = (TextView) findViewById(R.id.tviNivel);
         tviTipo = (TextView) findViewById(R.id.tviTipo);
+        tviDescripcion = (TextView) findViewById(R.id.tviDescripcion);
         img = (ImageView) findViewById(R.id.img);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -59,12 +63,14 @@ public class MisPokemonesActivity extends AppCompatActivity {
                 final List<Pokemones> pokemones = response.body();
                 int status = response.code();
                 Log.d("MainActivity","Status: " + status);
+                Log.d("MainActivity","Link: " + pokemones.get(i).getUrl());
+
                 cargarInformacion(pokemones);
 
                 butSiguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(i==pokemones.size()){
+                        if(i==pokemones.size()-1){
                             Toast.makeText(MisPokemonesActivity.this, "Ya no hay mas pokemones", Toast.LENGTH_SHORT).show();
                         }else{
                             //TODO: Pasa al siguiente pokemon que trajo del webservice
@@ -117,18 +123,10 @@ public class MisPokemonesActivity extends AppCompatActivity {
     }
 
     public void cargarInformacion(List<Pokemones> pokemones){
-        URL url = null;
-        try {
-            url = new URL(pokemones.get(i).getUrl());
-            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            img.setImageBitmap(bmp);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        tviNivel.setText(pokemones.get(i).getNivel());
+        Picasso.with(this).load(pokemones.get(i).getUrl()).into(img);
+        tviNivel.setText( pokemones.get(i).getNivel().toString());
         tviTipo.setText(pokemones.get(i).getTipo());
+        tviDescripcion.setText(pokemones.get(i).getDescripcion());
     }
 
 }
