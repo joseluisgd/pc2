@@ -9,10 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
-
 import clases.Respuesta;
-import clases.Usu;
 import clases.Usuario;
 import conexion.Conexion;
 import interfaces.UsuariosService;
@@ -24,13 +21,13 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
     EditText eteUsuario;
     EditText etePassword;
-    int id=0;
+    String username="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         if(savedInstanceState!=null){
-            id=savedInstanceState.getInt("id");
+            username=savedInstanceState.getString("id");
         }
 
         super.onCreate(savedInstanceState);
@@ -44,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Falta validar Login con el webservice.
-                if(eteUsuario.getText().toString().equalsIgnoreCase("") || etePassword.getText().toString().equalsIgnoreCase("")){
+                if(eteUsuario.getText().toString().equalsIgnoreCase("") ||
+                        etePassword.getText().toString().equalsIgnoreCase("")){
                     //Equivocacion Toast.
                     Toast.makeText(MainActivity.this, "Error en las credenciales.", Toast.LENGTH_SHORT).show();
                 }else{
@@ -65,15 +63,15 @@ public class MainActivity extends AppCompatActivity {
                             Respuesta r=response.body();
                             int status = response.code();
 
-                            if(r.getMsg().equalsIgnoreCase("")){
-                                id = r.getUsuario().getId();
+                            if(r.getStatus().getCod()==1){
+                                username = r.getUser().getUsername();
                                 Intent intent= new Intent(MainActivity.this,DashboardActivity.class);
-                                intent.putExtra("id",id);
-                                Log.i("MainActivity","id"+id);
+                                intent.putExtra("username",username);
+                                Log.i("MainActivity","id"+username);
                                 startActivity(intent);
 
                             }else{
-                                Toast.makeText(MainActivity.this, r.getMsg().toString(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, r.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
 
                             }
                             Log.d("MainActivity","STATUS: " + status);
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState){
-        savedInstanceState.putInt("id", id);
+        savedInstanceState.putString("username",username );
         super.onSaveInstanceState(savedInstanceState);
     }
 

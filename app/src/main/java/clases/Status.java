@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName;
  * Created by jose on 10/2/16.
  */
 public class Status {
-    @SerializedName("code")
+    @SerializedName("cod")
     @Expose
-    private Integer code;
+    private Integer cod;
     @SerializedName("msg")
     @Expose
     private String msg;
@@ -19,21 +19,13 @@ public class Status {
     }
 
 
-    public Status(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
+    public Integer getCod() {
+        return cod;
     }
 
-
-    public Integer getCode() {
-        return code;
+    public void setCod(Integer cod) {
+        this.cod = cod;
     }
-
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
 
     public String getMsg() {
         return msg;
@@ -42,5 +34,4 @@ public class Status {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
 }

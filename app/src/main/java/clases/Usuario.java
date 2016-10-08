@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName;
  * Created by jose on 10/2/16.
  */
 public class Usuario {
-    @SerializedName("user")
+    @SerializedName("username")
     @Expose
-    private String user;
+    private String username;
     @SerializedName("password")
     @Expose
     private String password;
@@ -20,17 +20,17 @@ public class Usuario {
 
 
     public Usuario(String user, String password) {
-        this.user = user;
+        this.username = user;
         this.password = password;
     }
 
 
     public String getUsername() {
-        return user;
+        return username;
     }
 
     public void setUsername(String user) {
-        this.user = user;
+        this.username = user;
     }
 
 

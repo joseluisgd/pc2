@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class DashboardActivity extends AppCompatActivity {
-    int id=0;
+    String username="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,14 +21,14 @@ public class DashboardActivity extends AppCompatActivity {
         butPokemonesDisponibles.setTypeface(tf);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            id = extras.getInt("id");
+            username = extras.getString("username");
         }
 
         butMisPokemones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardActivity.this,MisPokemonesActivity.class);
-                intent.putExtra("id",id);
+                intent.putExtra("username",username);
                 startActivity(intent);
             }
         });

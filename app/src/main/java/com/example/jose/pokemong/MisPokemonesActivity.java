@@ -35,7 +35,7 @@ public class MisPokemonesActivity extends AppCompatActivity {
     ImageView img;
     Button butSiguiente;
     Button butAtras;
-    int id=0;
+    String username="";
     int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class MisPokemonesActivity extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.img);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            id = extras.getInt("id");
+            username = extras.getString("username");
         }
 
 
@@ -66,7 +66,7 @@ public class MisPokemonesActivity extends AppCompatActivity {
 
         UsuariosService usuariosService = retrofit.create(UsuariosService.class);
 
-        usuariosService.getPokemones(id).enqueue(new Callback<List<Pokemones>>() {
+        usuariosService.getPokemones(username).enqueue(new Callback<List<Pokemones>>() {
             @Override
             public void onResponse(Call<List<Pokemones>> call, Response<List<Pokemones>> response) {
                 final List<Pokemones> pokemones = response.body();

@@ -7,46 +7,22 @@ import com.google.gson.annotations.SerializedName;
  * Created by jose on 10/2/16.
  */
 public class Respuesta {
-    @SerializedName("msg")
-    @Expose
-    private String msg;
+
     @SerializedName("status")
     @Expose
     private Status status;
     @SerializedName("usuario")
     @Expose
-    private Usu usuario;
+    private Usuario usuario;
 
 
     public Respuesta() {
     }
 
-
-    public Respuesta(String msg, Status status, Usu usuario) {
-        this.msg = msg;
+    public Respuesta(Status status, Usuario user) {
         this.status = status;
-        this.usuario = usuario;
+        this.usuario = user;
     }
-
-    public Respuesta(String msg, Status status) {
-        this.msg = msg;
-        this.status = status;
-    }
-
-
-    public Respuesta(Status status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
 
     public Status getStatus() {
         return status;
@@ -56,12 +32,11 @@ public class Respuesta {
         this.status = status;
     }
 
-    public Usu getUsuario() {
+    public Usuario getUser() {
         return usuario;
     }
 
-    public void setUsuario(Usu usuario) {
+    public void setUser(Usuario usuario) {
         this.usuario = usuario;
     }
-
 }

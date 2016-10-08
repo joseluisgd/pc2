@@ -5,9 +5,7 @@ import java.util.List;
 
 import clases.Pokemones;
 import clases.Respuesta;
-import clases.Usu;
 import clases.Usuario;
-import clases.Usuarios;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -18,14 +16,14 @@ import retrofit2.http.Query;
  * Created by jose on 10/2/16.
  */
 public interface UsuariosService {
-    @POST("/usuarios/login")
+    @POST("/login")
     Call<Respuesta> login(@Body Usuario usuario);
 
 
-    @POST("/usuarios")
-    Call<Respuesta> registrar(@Body Usuarios usuario);
+    @POST("/registro")
+    Call<Respuesta> registrar(@Body Usuario usuario);
 
 
-    @GET("/usuarios/{id_usuario}/pokemones")
-    Call<List<Pokemones>> getPokemones(@Query("id_usuario")int id);
+    @GET("/usuarios/{username}/pokemones")
+    Call<List<Pokemones>> getPokemones(@Query("username")String username);
 }
