@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20sp"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10sp"
+
     >
 
 
     <ImageView
         android:id="@+id/imgPoke"
-        android:layout_weight="8"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:src="@drawable/p"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:elevation="30sp"/>
 
 
     <TextView
-        android:layout_weight="0.5"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text=""
-        android:textAlignment="center"
-        />
-
-    <TextView
         android:id="@+id/tviNombrePoke"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
         android:text="Nombre Poke"
         android:textAlignment="center"
-        android:textSize="40sp"
+
         />
+
+
 
 
 </LinearLayout>

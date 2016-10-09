@@ -72,12 +72,8 @@ public class RegistroActivity extends AppCompatActivity {
                                         startActivity(intent);
                                     }else{
                                         Toast.makeText(RegistroActivity.this, respuesta.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
-
                                     }
-
-
                                 }
-
                                 @Override
                                 public void onFailure(Call<Respuesta> call, Throwable t) {
                                     Log.e("MainActivity", t.getMessage());

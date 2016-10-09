@@ -23,7 +23,6 @@ public class DashboardActivity extends AppCompatActivity {
         if (extras != null) {
             username = extras.getString("username");
         }
-
         butMisPokemones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +34,9 @@ public class DashboardActivity extends AppCompatActivity {
         butPokemonesDisponibles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardActivity.this, "La funcion aun no se encuentra disponible", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DashboardActivity.this,AtraparActivity.class);
+                intent.putExtra("username",username);
+                startActivity(intent);
             }
         });
     }

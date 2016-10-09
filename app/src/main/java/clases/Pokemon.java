@@ -7,76 +7,61 @@ import com.google.gson.annotations.SerializedName;
  * Created by jose on 10/2/16.
  */
 public class Pokemon {
+
+    //
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("url")
+    @SerializedName("name")
     @Expose
-    private String url;
-    @SerializedName("nombre")
+    private String name;
+    @SerializedName("type")
     @Expose
-    private String nombre;
-    @SerializedName("tipo")
-    @Expose
-    private String tipo;
+    private String type;
     @SerializedName("nivel")
     @Expose
     private Integer nivel;
-    @SerializedName("descripcion")
+    @SerializedName("img")
     @Expose
-    private String descripcion;
+    private String img;
+    @SerializedName("description")
+    @Expose
+    private String description;
 
     public Pokemon() {
     }
 
-
-    public Pokemon(Integer id, String url, String nombre, String tipo, Integer nivel, String descripcion) {
+    public Pokemon(Integer id, String name, String type, Integer nivel, String img, String description) {
         this.id = id;
-        this.url = url;
-        this.nombre = nombre;
-        this.tipo = tipo;
+        this.name = name;
+        this.type = type;
         this.nivel = nivel;
-        this.descripcion = descripcion;
+        this.img = img;
+        this.description = description;
     }
-
 
     public Integer getId() {
         return id;
     }
 
-
     public void setId(Integer id) {
         this.id = id;
     }
 
-
-    public String getUrl() {
-        return url;
+    public String getName() {
+        return name;
     }
 
-
-    public void setUrl(String url) {
-        this.url = url;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    public String getNombre() {
-        return nombre;
+    public String getType() {
+        return type;
     }
 
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-
-    public String getTipo() {
-        return tipo;
-    }
-
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Integer getNivel() {
@@ -87,12 +72,19 @@ public class Pokemon {
         this.nivel = nivel;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getImg() {
+        return img;
     }
 
+    public void setImg(String img) {
+        this.img = img;
+    }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
