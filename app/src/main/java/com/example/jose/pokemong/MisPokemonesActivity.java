@@ -1,8 +1,6 @@
 package com.example.jose.pokemong;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,12 +13,9 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
-import clases.Pokemones;
+import clases.Pokemon;
 import conexion.Conexion;
 import interfaces.UsuariosService;
 import retrofit2.Call;
@@ -66,10 +61,10 @@ public class MisPokemonesActivity extends AppCompatActivity {
 
         UsuariosService usuariosService = retrofit.create(UsuariosService.class);
 
-        usuariosService.getPokemones(username).enqueue(new Callback<List<Pokemones>>() {
+        usuariosService.getPokemones(username).enqueue(new Callback<List<Pokemon>>() {
             @Override
-            public void onResponse(Call<List<Pokemones>> call, Response<List<Pokemones>> response) {
-                final List<Pokemones> pokemones = response.body();
+            public void onResponse(Call<List<Pokemon>> call, Response<List<Pokemon>> response) {
+                final List<Pokemon> pokemones = response.body();
                 int status = response.code();
                 Log.d("MainActivity","Status: " + status);
                 Log.d("MainActivity","Link: " + pokemones.get(i).getUrl());
@@ -109,7 +104,7 @@ public class MisPokemonesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Pokemones>> call, Throwable t) {
+            public void onFailure(Call<List<Pokemon>> call, Throwable t) {
                 Log.e("MisPokemonesActivity",t.getMessage());
             }
         });
@@ -131,7 +126,7 @@ public class MisPokemonesActivity extends AppCompatActivity {
 
     }
 
-    public void cargarInformacion(List<Pokemones> pokemones){
+    public void cargarInformacion(List<Pokemon> pokemones){
         Picasso.with(this).load(pokemones.get(i).getUrl()).into(img);
         tviNivel.setText( pokemones.get(i).getNivel().toString());
         tviTipo.setText(pokemones.get(i).getTipo());

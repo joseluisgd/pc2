@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by jose on 10/2/16.
  */
-public class Pokemones {
+public class Pokemon {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -26,11 +26,11 @@ public class Pokemones {
     @Expose
     private String descripcion;
 
-    public Pokemones() {
+    public Pokemon() {
     }
 
 
-    public Pokemones(Integer id, String url, String nombre, String tipo, Integer nivel, String descripcion) {
+    public Pokemon(Integer id, String url, String nombre, String tipo, Integer nivel, String descripcion) {
         this.id = id;
         this.url = url;
         this.nombre = nombre;

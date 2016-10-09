@@ -3,7 +3,7 @@ package interfaces;
 
 import java.util.List;
 
-import clases.Pokemones;
+import clases.Pokemon;
 import clases.Respuesta;
 import clases.Usuario;
 import retrofit2.Call;
@@ -25,5 +25,5 @@ public interface UsuariosService {
 
 
     @GET("/usuarios/{username}/pokemones")
-    Call<List<Pokemones>> getPokemones(@Query("username")String username);
+    Call<List<Pokemon>> getPokemones(@Query("username")String username);
 }

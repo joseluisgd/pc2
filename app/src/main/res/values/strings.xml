@@ -2,8 +2,8 @@
     <string name="app_name">PokemonG</string>
     <string name="title_activity_registro">RegistroActivity</string>
     <string name="atras"><![CDATA[<<]]></string>
-    <string name="mis_pokemones">Mis Pokemones</string>
-    <string name="pokemones_disponibles">Pokemones disponibles</string>
+    <string name="mi_pokedex">Mi Pokedex</string>
+    <string name="atrapar">Atrapar</string>
     <string name="pokemon">Pokemon</string>
     <string name="trading_cards">Trading cards</string>
     <string name="ingrese_usuario">Ingrese usuario</string>

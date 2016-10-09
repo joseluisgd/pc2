@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="@string/mis_pokemones"
+            android:text="@string/mi_pokedex"
             android:textSize="30sp"
             style="@style/Widget.AppCompat.Button.Borderless"/>
         <Button
@@ -36,7 +36,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="@string/pokemones_disponibles"
+            android:text="@string/atrapar"
             android:textSize="30sp"
             style="@style/Widget.AppCompat.Button.Borderless"/>
     </LinearLayout>
