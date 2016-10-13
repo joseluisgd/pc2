@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/pokemon"
             android:layout_centerHorizontal="true"
-            android:textSize="50sp"/>
+            android:textSize="50sp" />
         <TextView
             android:id="@+id/titulo2"
             android:layout_width="wrap_content"
@@ -50,9 +50,9 @@
                 android:id="@+id/eteUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="10sp"
                 android:hint="@string/ingrese_usuario"
+                android:typeface="sans"
                 />
             <EditText
                 android:id="@+id/etePassword"
@@ -61,8 +61,7 @@
                 android:layout_below="@id/eteUsuario"
                 android:layout_marginTop="10sp"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                />
+                android:inputType="textPassword" />
             <LinearLayout
                 android:layout_below="@id/etePassword"
                 android:layout_width="match_parent"
@@ -79,6 +78,7 @@
                     android:id="@+id/butRegistro"
                     android:layout_weight="2"
                     android:layout_width="0dp"
+                    android:onClick="Registrar"
                     android:layout_height="wrap_content"
                     android:text="@string/registro"
                     style="@style/Widget.AppCompat.Button.Borderless"/>

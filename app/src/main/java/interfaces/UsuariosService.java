@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import clases.Atrapar;
+import clases.ListaPokemones;
 import clases.Pokemon;
 import clases.ResponsePokemones;
 import clases.Respuesta;
@@ -28,12 +29,14 @@ public interface UsuariosService {
     @POST("/registro")
     Call<Respuesta> registrar(@Body Usuario usuario);
 
-
     @GET("/usuario/{username}/pokemones")
     Call<ResponsePokemones> getPokemones(@Path("username") String username);
 
-    @GET("/pokedata/{id}")
-    Call<Pokemon> getPokeRadar(@Path("id")int id);
+    @GET("/mispokemones/{username}")
+    Call<ListaPokemones> getMisPokemones(@Path("username") String username);
+
+    @GET("/pokedata/pokemones")
+    Call<ListaPokemones> getListaPokemones();
 
     @POST("/addpoke")
     Call<Respuesta> registrarPokemon(@Body Atrapar atrapar);

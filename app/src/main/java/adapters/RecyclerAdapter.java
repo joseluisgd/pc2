@@ -26,17 +26,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PokeHo
     private ArrayList<Pokemon> mPokemones;
     private Context context;
     private String username;
-    private ProgressDialog progress;
-    private int size;
-    private int a;
 
 
-    public RecyclerAdapter(ArrayList<Pokemon> mPokemones,Context context,String username,ProgressDialog progress,int size) {
+
+    public RecyclerAdapter(ArrayList<Pokemon> mPokemones,Context context,String username) {
         this.mPokemones = mPokemones;
         this.context= context;
         this.username=username;
-        this.progress=progress;
-        this.size=size;
+
     }
 
 
@@ -55,8 +52,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PokeHo
         holder.url = mPokemones.get(position).getImg();
         holder.idPoke=mPokemones.get(position).getId();
         holder.username=username;
-
-
+        holder.nombrePoke=mPokemones.get(position).getName();
+        holder.tipo=mPokemones.get(position).getType();
+        holder.nivel=mPokemones.get(position).getNivel();
+        holder.descripcion=mPokemones.get(position).getDescription();
+        /*
         Log.i("RecyclerAdapter","size: " + size);
         Log.i("RecyclerAdapter","position: " + position);
         int i=0;
@@ -66,6 +66,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PokeHo
 
             progress.dismiss();
         }
+        */
+
 
 
     }
@@ -79,27 +81,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PokeHo
     public static class PokeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //2
-        private int i=0;
+        //private int i=0;
         private ImageView mImagenPokemon;
         private TextView tviNombrePokemon;
         private Pokemon mPokemon;
         private String url="";
         private int idPoke=0;
         private String username;
-
+        private String nombrePoke;
+        private String tipo;
+        private int nivel;
+        private String descripcion;
 
 
         //3
-        private static final String PHOTO_KEY = "PHOTO";
+        //private static final String PHOTO_KEY = "PHOTO";
 
         //4
         public PokeHolder(View v) {
             super(v);
             mImagenPokemon = (ImageView) v.findViewById(R.id.imgPoke);
             tviNombrePokemon = (TextView) v.findViewById(R.id.tviNombrePoke);
-
-
-
             v.setOnClickListener(this);
         }
 
@@ -111,7 +113,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PokeHo
             intent.putExtra("url",url);
             intent.putExtra("idPoke",idPoke);
             intent.putExtra("username",username);
-//          showPhotoIntent.putExtra(PHOTO_KEY, mPhoto);
+            intent.putExtra("nombrepoke",nombrePoke);
+            intent.putExtra("tipo",tipo);
+            intent.putExtra("nivel",nivel);
+            intent.putExtra("descripcion",descripcion);
             context.startActivity(intent);
         }
     }

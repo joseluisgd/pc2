@@ -112,6 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/menu"
+            android:onClick="Menu"
             android:layout_centerHorizontal="true"
             android:theme="@style/AppTheme.Button"
             android:background="#FBFCCB"/>

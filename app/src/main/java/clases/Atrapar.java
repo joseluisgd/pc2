@@ -10,13 +10,13 @@ public class Atrapar {
     @SerializedName("username")
     @Expose
     private String username;
-    @SerializedName("id")
+    @SerializedName("pokemones")
     @Expose
-    private int id;
+    private Pokemon pokemones;
 
-    public Atrapar(String username, int id) {
+    public Atrapar(String username, Pokemon pokemones) {
         this.username = username;
-        this.id = id;
+        this.pokemones = pokemones;
     }
 
     public String getUsername() {
@@ -27,11 +27,12 @@ public class Atrapar {
         this.username = username;
     }
 
-    public int getId() {
-        return id;
+    public Pokemon getPokemon() {
+        return pokemones;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPokemon(Pokemon pokemon) {
+        this.pokemones = pokemon;
     }
 }
+

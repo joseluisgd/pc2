@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 import adapters.RecyclerAdapter;
+import clases.ListaPokemones;
 import clases.Pokemon;
 import clases.ResponsePokemones;
 import conexion.Conexion;
@@ -73,100 +74,67 @@ public class MisPokemonesActivity extends AppCompatActivity {
         final UsuariosService usuariosService = retrofit.create(UsuariosService.class);
 
         progress = new ProgressDialog(this);
-        progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
+        progress.setTitle("Cargando");
+        progress.setMessage("Espere mientras carga...");
+        progress.setCancelable(false);
         progress.show();
-        usuariosService.getPokemones(username).enqueue(new Callback<ResponsePokemones>() {
+        usuariosService.getMisPokemones(username).enqueue(new Callback<ListaPokemones>() {
             @Override
-            public void onResponse(Call<ResponsePokemones> call, Response<ResponsePokemones> response) {
-                ResponsePokemones responsePokemones = response.body();
-                int code= response.code();
-                 size= responsePokemones.getPokemones().getPokemones().size();
-                Log.i("MisPokemonesActivity","size: " + size);
-
-                    usuariosService.getPokemones(username).enqueue(new Callback<ResponsePokemones>() {
-                        @Override
-                        public void onResponse(Call<ResponsePokemones> call, Response<ResponsePokemones> response) {
-                            ResponsePokemones responseId = response.body() ;
-                            final List<Integer> pokesIds = responseId.getPokemones().getPokemones();
-                            listaPok= new ArrayList<Pokemon>();
-                            for(Integer id : pokesIds){
-                                usuariosService.getPokeRadar(id).enqueue(new Callback<Pokemon>() {
-                                    @Override
-                                    public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {
-                                        Pokemon pokemon= response.body();
-                                        listaPok.add(pokemon);
-                                        if(pokesIds.size() == size){
-                                            cargarInformacion(listaPok);
-                                            progress.dismiss();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<Pokemon> call, Throwable t) {
-                                        Log.e("AtraparActivity",t.getMessage());
-                                    }
-                                });
-                            }
-
-
-                            butSiguiente.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if(i==size-1){
-                                        Toast.makeText(MisPokemonesActivity.this, "Ya no hay mas pokemones", Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        //TODO: Pasa al siguiente pokemon que trajo del webservice
-                                        i++;
-                                        cargarInformacion(listaPok);
-                                    }
-
-                                }
-                            });
-                            butAtras.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if(i==0){
-                                        Toast.makeText(MisPokemonesActivity.this, "Presionar >>", Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        //TODO: Retrocede al pokemon previo
-                                        i--;
-                                        cargarInformacion(listaPok);
-                                    }
-                                }
-                            });
-
-                            Button butMenu = (Button) findViewById(R.id.butMenu);
-                            butMenu.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(MisPokemonesActivity.this,DashboardActivity.class);
-                                    intent.putExtra("username",username);
-                                    startActivity(intent);
-                                }
-
-                        });
-                        }
-                        @Override
-                        public void onFailure(Call<ResponsePokemones> call, Throwable t) {
-                            Log.e("AtraparActivity",t.getMessage());
-                        }
-
-                    });
+            public void onResponse(Call<ListaPokemones> call, Response<ListaPokemones> response) {
+                final ListaPokemones listaPokemones = response.body();
+                listaPok = listaPokemones.getPokemones();
+                if(listaPok.size()==0){
+                    progress.dismiss();
+                    Intent intent = new Intent(MisPokemonesActivity.this, DashboardActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(MisPokemonesActivity.this, "No tienes pokemones aun!!!", Toast.LENGTH_SHORT).show();
+                }else{
+                    cargarInformacion();
+                    progress.dismiss();
                 }
+            }
             @Override
-            public void onFailure(Call<ResponsePokemones> call, Throwable t) {
-                Log.e("AtraparActivity",t.getMessage());
+            public void onFailure(Call<ListaPokemones> call, Throwable t) {
+                progress.dismiss();
+                Intent intent = new Intent(MisPokemonesActivity.this, DashboardActivity.class);
+                intent.putExtra("username",username);
+                startActivity(intent);
+                Toast.makeText(MisPokemonesActivity.this, "Error en la conexion", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        butSiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i==listaPok.size()-1){
+                    Toast.makeText(MisPokemonesActivity.this, "No tienes mas pokemones", Toast.LENGTH_SHORT).show();
+                }else{
+                    i++;
+                    cargarInformacion();
+                }
+            }
+        });
+        butAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i==0){
+                    Toast.makeText(MisPokemonesActivity.this, "Presiona el boton >>", Toast.LENGTH_SHORT).show();
+                }else{
+                    i--;
+                    cargarInformacion();
+                }
             }
         });
 
 
 
-
-
     }
-
-    public void cargarInformacion(List<Pokemon> listaPok){
+    public void Menu(View v){
+        Intent intent = new Intent(MisPokemonesActivity.this,DashboardActivity.class);
+        intent.putExtra("username",username);
+        startActivity(intent);
+    }
+    public void cargarInformacion(){
         Log.i("MisPokemonesActivity",listaPok.get(i).getImg());
         Picasso.with(this).load(listaPok.get(i).getImg()).into(img);
         tviPokemon.setText(listaPok.get(i).getName().toString());
